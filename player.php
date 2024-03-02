@@ -5,11 +5,13 @@ class Player
     protected $wins = 0;
     protected $losses = 0;
 
-    protected $expected_win_rate;
+    protected $expected_winrate;
+    protected $winrate_range_max;
 
-    public function __construct($expected_win_rate = 50)
+    public function __construct($expected_winrate, $winrate_range_max)
     {
-        $this->expected_win_rate = $expected_win_rate;
+        $this->expected_winrate = $expected_winrate;
+        $this->winrate_range_max = $winrate_range_max;
     }
 
     public function addWin()
@@ -34,6 +36,11 @@ class Player
 
     public function getResult()
     {
-        return rand(1, 100) > $this->expected_win_rate;
+        return rand(1, $this->winrate_range_max) > $this->expected_winrate;
+    }
+
+    protected function getExpectedWinRate()
+    {
+        return $this->expected_winrate;
     }
 }
