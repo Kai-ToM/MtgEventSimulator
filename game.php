@@ -24,6 +24,7 @@ class Game
 
         for ($i = 0; $i < $times; $i++) {
             $this->duel($player1, $player2);
+
             if ($this->isGameFinished($player1)) {
                 $this->saveWinRate($player1);
                 $player1 = $this->getPlayer();
@@ -37,12 +38,18 @@ class Game
 
     protected function duel(Player $player1, Player $player2)
     {
-        if (rand(0, 1)) {
+        do {
+            $is_player1_win = $player1->getResult();
+            $is_player2_win = $player2->getResult();
+        }
+        while ($is_player1_win !== $is_player2_win);
+
+        if ($is_player1_win) {
             $player1->addWin();
             $player2->addLose();
         } else {
-            $player1->addLose();
             $player2->addWin();
+            $player1->addLose();
         }
     }
 
