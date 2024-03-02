@@ -33,7 +33,7 @@ class PlayerGetter
         } else {
             $winrate = $base_winrate;
         }
-        echo $winrate . PHP_EOL;
+
         return $winrate;
     }
 }
