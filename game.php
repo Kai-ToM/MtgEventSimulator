@@ -42,17 +42,15 @@ class Game
     protected function duel(Player $player1, Player $player2)
     {
         do {
-            $is_player1_win = $player1->getResult();
-            $is_player2_win = $player2->getResult();
+            $is_player1_win = $player1->getPower();
+            $is_player2_win = $player2->getPower();
         }
         while ($is_player1_win !== $is_player2_win);
 
         if ($is_player1_win) {
-            $player1->addWin();
-            $player2->addLose();
+            $player1->addWin($player2->getExpectedWinRate());
         } else {
-            $player2->addWin();
-            $player1->addLose();
+            $player1->addLose($player2->getExpectedWinRate());
         }
     }
 
