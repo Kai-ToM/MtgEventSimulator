@@ -6,7 +6,7 @@ class Game
     const MAX_WINS = 7;
     const MAX_LOSSES = 3;
 
-    protected $saved_player = [];
+    protected $saved_players = [];
 
     protected $player_getter;
     
@@ -17,7 +17,7 @@ class Game
 
     protected function savePlayer(Player $player)
     {
-        $this->saved_player[] = $player;
+        $this->saved_players[] = $player;
     }
 
     public function playGames($times)
@@ -57,6 +57,6 @@ class Game
 
     public function getSavedPlayers()
     {
-        return $this->saved_player;
+        return $this->saved_players;
     }
 }
