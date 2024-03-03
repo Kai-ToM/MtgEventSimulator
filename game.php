@@ -6,7 +6,7 @@ class Game
     const MAX_WINS = 7;
     const MAX_LOSSES = 3;
 
-    protected $players_winrate = [];
+    protected $saved_player = [];
 
     protected $player_getter;
     
@@ -15,9 +15,9 @@ class Game
         $this->player_getter = new PlayerGetter();
     }
 
-    protected function saveWinRate(Player $player)
+    protected function savePlayer(Player $player)
     {
-        $this->players_winrate[] = $player->getWins() / ($player->getWins() + $player->getLosses());
+        $this->saved_player[] = $player;
     }
 
     public function playGames($times)
@@ -29,7 +29,7 @@ class Game
             $this->duel($player1, $player2);
 
             if ($this->isGameFinished($player1)) {
-                $this->saveWinRate($player1);
+                $this->savePlayer($player1);
                 $player1 = $this->player_getter->get();
             }
         }
@@ -55,8 +55,8 @@ class Game
         return $player->getWins() === self::MAX_WINS || $player->getLosses() === self::MAX_LOSSES;
     }
 
-    public function getWinrate()
+    public function getSavedPlayers()
     {
-        return $this->players_winrate;
+        return $this->saved_player;
     }
 }
