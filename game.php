@@ -23,18 +23,14 @@ class Game
     public function playGames($times)
     {
         $player1 = $this->player_getter->get();
-        $player2 = $this->player_getter->get();
-
+        
         for ($i = 0; $i < $times; $i++) {
+            $player2 = $this->player_getter->get();
             $this->duel($player1, $player2);
 
             if ($this->isGameFinished($player1)) {
                 $this->saveWinRate($player1);
                 $player1 = $this->player_getter->get();
-            }
-            if ($this->isGameFinished($player2)) {
-                $this->saveWinRate($player2);
-                $player2 = $this->player_getter->get();
             }
         }
     }
