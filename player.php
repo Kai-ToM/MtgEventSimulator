@@ -27,7 +27,7 @@ class Player
     public function addLose(int $opprnent_expected_winrate)
     {
         $this->results[] = [
-            'result' => 'lose', $opprnent_expected_winrate,
+            'result' => 'lose',
             'opprnent_expected_winrate' => $opprnent_expected_winrate,
         ];
     }
@@ -49,6 +49,11 @@ class Player
     public function getPower()
     {
         return rand(1, $this->winrate_range_max) > $this->expected_winrate;
+    }
+
+    public function getResults()
+    {
+        return $this->results;
     }
 
     public function getExpectedWinRate()
