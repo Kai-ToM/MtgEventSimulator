@@ -10,8 +10,8 @@ class PlayersGetter
     ];
 
     const STRENGS_EDIT = [
-        'quantity' => 30,
-        'bias' => 45,
+        'quantity' => 15,
+        'bias' => 10,
     ];
 
     public function getMass(int $count, int $dummy):array
