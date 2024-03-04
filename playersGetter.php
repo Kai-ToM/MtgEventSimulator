@@ -10,7 +10,7 @@ class PlayersGetter
         ],
         'edit' => [
             'quantity' => 15,
-            'bias' => 10,
+            'bias' => 20,
         ],
     ];
 
@@ -31,7 +31,7 @@ class PlayersGetter
     protected function getWinrate($count, $i): int
     {
         $base_winrate = self::WINTATE_CONFIG['range']['max'] / 2;
-        if ((self::WINTATE_CONFIG['edit']['quantity'] * 2 * $count / self::WINTATE_CONFIG['range']['max']) < $i) {
+        if ((self::WINTATE_CONFIG['edit']['quantity'] * 2 * $count / self::WINTATE_CONFIG['range']['max']) <= $i) {
             return $base_winrate;
         } elseif ((self::WINTATE_CONFIG['edit']['quantity'] * $count / self::WINTATE_CONFIG['range']['max']) > $i) {
             return $base_winrate - self::WINTATE_CONFIG['edit']['bias'];
