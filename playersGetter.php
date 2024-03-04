@@ -3,15 +3,15 @@ include 'player.php';
 
 class PlayersGetter
 {
-    const WINTATE_CONFIG = [
-        'range' => [
-            'min'  => 1,
-            'max' => 100,
-        ],
-        'edit' => [
-            'quantity' => 15,
-            'bias' => 20,
-        ],
+
+    const WINTATE_RANGE = [
+        'min'  => 1,
+        'max' => 100,
+    ];
+
+    const STRENGS_EDIT = [
+        'quantity' => 30,
+        'bias' => 45,
     ];
 
     public function getMass(int $count, int $dummy):array
@@ -21,22 +21,22 @@ class PlayersGetter
         }
         $players = [];
         for ($i = 0; $i < $count; $i++) {
-            $players[] = new Player($this->getWinrate($count, $i), self::WINTATE_CONFIG['range']['max']);
+            $players[] = new Player($this->getStrengs($count, $i), self::WINTATE_RANGE['max']);
         }
         shuffle($players);
         $dummy = $this->getDummy($dummy);
         return array_merge($players, $dummy);
     }
 
-    protected function getWinrate($count, $i): int
+    protected function getStrengs($count, $i): int
     {
-        $base_winrate = self::WINTATE_CONFIG['range']['max'] / 2;
-        if ((self::WINTATE_CONFIG['edit']['quantity'] * 2 * $count / self::WINTATE_CONFIG['range']['max']) <= $i) {
-            return $base_winrate;
-        } elseif ((self::WINTATE_CONFIG['edit']['quantity'] * $count / self::WINTATE_CONFIG['range']['max']) > $i) {
-            return $base_winrate - self::WINTATE_CONFIG['edit']['bias'];
+        $base_strengs = self::WINTATE_RANGE['max'] / 2;
+        if ((self::STRENGS_EDIT['quantity'] * 2 * $count / self::WINTATE_RANGE['max']) <= $i) {
+            return $base_strengs;
+        } elseif ((self::STRENGS_EDIT['quantity'] * $count / self::WINTATE_RANGE['max']) > $i) {
+            return $base_strengs - self::STRENGS_EDIT['bias'];
         } else {
-            return $base_winrate + self::WINTATE_CONFIG['edit']['bias'];
+            return $base_strengs + self::STRENGS_EDIT['bias'];
         }
     }
 
@@ -44,7 +44,7 @@ class PlayersGetter
     {
         $dummy = [];
         for ($i = 0; $i < $count; $i++) {
-            $dummy[] = new Player(self::WINTATE_CONFIG['range']['max']/2 , self::WINTATE_CONFIG['range']['max']);
+            $dummy[] = new Player(self::WINTATE_RANGE['max']/2 , self::WINTATE_RANGE['max']);
         }
         return $dummy;
     }

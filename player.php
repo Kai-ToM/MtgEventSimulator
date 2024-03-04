@@ -7,28 +7,28 @@ class Player
 
     protected $results = [];
 
-    protected $expected_winrate;
-    protected $winrate_range_max;
+    protected $strengs;
+    protected $strengs_range_max;
 
-    public function __construct($expected_winrate, $winrate_range_max)
+    public function __construct($strengs, $strengs_range_max)
     {
-        $this->expected_winrate = $expected_winrate;
-        $this->winrate_range_max = $winrate_range_max;
+        $this->strengs = $strengs;
+        $this->strengs_range_max = $strengs_range_max;
     }
 
-    public function addWin(int $opprnent_expected_winrate)
+    public function addWin(int $opprnent_strengs)
     {
         $this->results[] = [
             'result' => 'win',
-            'opprnent_expected_winrate' => $opprnent_expected_winrate,
+            'opprnent_strengs' => $opprnent_strengs,
         ];
     }
 
-    public function addLose(int $opprnent_expected_winrate)
+    public function addLose(int $opprnent_strengs)
     {
         $this->results[] = [
             'result' => 'lose',
-            'opprnent_expected_winrate' => $opprnent_expected_winrate,
+            'opprnent_strengs' => $opprnent_strengs,
         ];
     }
 
@@ -48,7 +48,7 @@ class Player
 
     public function getPower()
     {
-        return rand(1, $this->winrate_range_max) < $this->expected_winrate;
+        return rand(1, $this->strengs_range_max) < $this->strengs;
     }
 
     public function getResults()
@@ -56,8 +56,8 @@ class Player
         return $this->results;
     }
 
-    public function getExpectedWinRate()
+    public function getStrengs()
     {
-        return $this->expected_winrate;
+        return $this->strengs;
     }
 }

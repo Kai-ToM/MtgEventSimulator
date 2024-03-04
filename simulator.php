@@ -7,7 +7,7 @@ $players = $game->playGames(10000);
 $file = fopen('./player_result.csv', 'w');
 foreach ($players as $player) {
     $data = [
-        $player->getExpectedWinRate(), 
+        $player->getStrengs(), 
         $player->getWins(),
         $player->getLosses(),
         $player->getWins() . '-' . $player->getLosses(),
@@ -24,7 +24,7 @@ foreach ($players as $player) {
     foreach ($player->getResults() as $result) {
         $cnt++;
         $data = [
-            $fuga = $player->getExpectedWinRate(),
+            $fuga = $player->getStrengs(),
             $result['result'],
         ];
         fputcsv($file, $data);

@@ -48,11 +48,11 @@ class Game
         while ($is_player1_win === $is_player2_win);
 
         if ($is_player1_win) {
-            $player1->addWin($player2->getExpectedWinRate());
-            $player2->addLose($player1->getExpectedWinRate());
+            $player1->addWin($player2->getStrengs());
+            $player2->addLose($player1->getStrengs());
         } else {
-            $player2->addWin($player1->getExpectedWinRate());
-            $player1->addLose($player2->getExpectedWinRate());
+            $player2->addWin($player1->getStrengs());
+            $player1->addLose($player2->getStrengs());
         }
     }
 
