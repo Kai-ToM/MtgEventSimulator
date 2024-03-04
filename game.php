@@ -1,5 +1,5 @@
 <?php
-include 'playerGetter.php';
+include 'playersGetter.php';
 
 class Game
 {
@@ -8,11 +8,11 @@ class Game
 
     protected $saved_players = [];
 
-    protected $player_getter;
+    protected $players_getter;
     
     public function __construct()
     {
-        $this->player_getter = new PlayerGetter();
+        $this->players_getter = new PlayerGetter();
     }
 
     protected function savePlayer(Player $player)
@@ -22,17 +22,7 @@ class Game
 
     public function playGames($times)
     {
-        $player1 = $this->player_getter->get();
-        
-        for ($i = 0; $i < $times; $i++) {
-            $player2 = $this->player_getter->get();
-            $this->duel($player1, $player2);
-
-            if ($this->isGameFinished($player1)) {
-                $this->savePlayer($player1);
-                $player1 = $this->player_getter->get();
-            }
-        }
+        $players = $this->players_getter->getMass()
     }
 
     protected function duel(Player $player1, Player $player2)
