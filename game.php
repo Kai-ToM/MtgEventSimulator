@@ -45,7 +45,7 @@ class Game
             $is_player1_win = $player1->getPower();
             $is_player2_win = $player2->getPower();
         }
-        while ($is_player1_win !== $is_player2_win);
+        while ($is_player1_win === $is_player2_win);
 
         if ($is_player1_win) {
             $player1->addWin($player2->getExpectedWinRate());
