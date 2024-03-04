@@ -12,7 +12,7 @@ class Game
     
     public function __construct()
     {
-        $this->players_getter = new PlayerGetter();
+        $this->players_getter = new PlayersGetter();
     }
 
     protected function savePlayer(Player $player)
@@ -22,7 +22,8 @@ class Game
 
     public function playGames($times)
     {
-        $players = $this->players_getter->getMass()
+        $players = $this->players_getter->getMass();
+
     }
 
     protected function duel(Player $player1, Player $player2)
