@@ -48,7 +48,7 @@ class Player
 
     public function getPower()
     {
-        return rand(1, $this->winrate_range_max) > $this->expected_winrate;
+        return rand(1, $this->winrate_range_max) < $this->expected_winrate;
     }
 
     public function getResults()
