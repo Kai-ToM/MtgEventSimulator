@@ -22,8 +22,21 @@ class Game
 
     public function playGames($times)
     {
-        $players = $this->players_getter->getMass();
-
+        $players = $this->players_getter->getMass($times, 10);
+        foreach($players as $player1_key =>$player1) {
+            $i = 1;
+            while (!$this->isGameFinished($player1)) {
+                $player2 = $players[$player1_key + $i];
+                if (!$this->isGameFinished($player2)) {
+                    $this->duel($player1, $player2);
+                }
+                $i++;
+            }
+            if ($player1_key > $times) {
+                break;
+            }
+        }
+        return array_slice($players, 0, $times);
     }
 
     protected function duel(Player $player1, Player $player2)
